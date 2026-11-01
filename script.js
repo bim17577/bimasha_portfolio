@@ -125,7 +125,7 @@ var CONFIG = {
     // [selector, animation, stagger seconds between siblings]
     var plan = [
       ['.head', 'up', 0],
-      ['.stats .stat', 'pop', .1],
+      ['.process .pstep', 'pop', .1],
       ['.orbit-band', 'zoom', 0],
       ['.layers li', 'left', .14],
       ['.bento .cell', 'pop', .09],
@@ -366,27 +366,6 @@ var CONFIG = {
       b.addEventListener('pointerleave', function() {
         b.style.transform = ''
       });
-    });
-  }
-
-  /* ---------- stats count up when they scroll into view ---------- */
-  if ('IntersectionObserver' in window && !reduce) {
-    var co = new IntersectionObserver(function(es) {
-      es.forEach(function(e) {
-        if (!e.isIntersecting) return;
-        co.unobserve(e.target);
-        var el = e.target,
-          to = +el.dataset.to,
-          t0 = performance.now();
-        (function step(t) {
-          var k = Math.min((t - t0) / 1400, 1);
-          el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
-          if (k < 1) requestAnimationFrame(step)
-        })(t0);
-      })
-    }, { threshold: .6 });
-    document.querySelectorAll('.stat b[data-to]').forEach(function(b) {
-      co.observe(b)
     });
   }
 
