@@ -523,6 +523,12 @@ main.wrap {
   animation-delay: -2s
 }
 
+.badge.b3 {
+  top: 2%;
+  right: 0;
+  animation-delay: -3.2s
+}
+
 @keyframes bob {
   50% {
     transform: translateY(-8px)
@@ -552,6 +558,10 @@ main.wrap {
 
   .badge.b2 {
     right: -4%
+  }
+
+  .badge.b3 {
+    right: -2%
   }
 }
 
@@ -595,41 +605,56 @@ main.wrap {
 }
 
 
-/* ================= STATS ================= */
-.stats {
+/* ================= PROCESS ================= */
+.process {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
-  margin-top: 56px
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none
 }
 
 @media (max-width:760px) {
-  .stats {
+  .process {
     grid-template-columns: repeat(2, minmax(0, 1fr))
   }
 }
 
-.stat {
+@media (max-width:440px) {
+  .process {
+    grid-template-columns: 1fr
+  }
+}
+
+.pstep {
   padding: 20px 22px;
   border-radius: 20px;
   background: var(--surface);
   border: 1px solid var(--line)
 }
 
-.stat b {
+.pstep b {
   display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold)
+}
+
+.pstep h3 {
+  margin: 10px 0 0;
   font-family: var(--display);
-  font-size: clamp(34px, 4vw, 46px);
+  font-size: clamp(20px, 2vw, 24px);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.15;
   background: linear-gradient(120deg, var(--brand), var(--brand-2));
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  font-variant-numeric: tabular-nums
+  color: transparent
 }
 
-.stat span {
+.pstep span {
   display: block;
   margin-top: 8px;
   font-size: 13.5px;
@@ -2930,14 +2955,14 @@ nav.scrolled {
   transform: translateX(-50%)
 }
 
-/* ---------- stats ---------- */
-.stat {
+/* ---------- process steps ---------- */
+.pstep {
   position: relative;
   overflow: hidden;
   transition: transform .25s, border-color .25s, box-shadow .25s
 }
 
-.stat::after {
+.pstep::after {
   content: "";
   position: absolute;
   left: 0;
@@ -2950,13 +2975,13 @@ nav.scrolled {
   transition: transform .45s
 }
 
-.stat:hover {
+.pstep:hover {
   transform: translateY(-4px);
   border-color: color-mix(in srgb, var(--brand) 50%, var(--line));
   box-shadow: 0 24px 40px -28px color-mix(in srgb, var(--brand) 70%, transparent)
 }
 
-.stat:hover::after {
+.pstep:hover::after {
   transform: scaleX(1)
 }
 
@@ -3014,7 +3039,7 @@ nav.scrolled {
 }
 
 /* ---------- card borders: black in light mode, subtle in dark (--card-line) ---------- */
-.stat,
+.pstep,
 .orbit-band,
 .layers li,
 .editor,
